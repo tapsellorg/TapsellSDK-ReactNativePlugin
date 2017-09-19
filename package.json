@@ -1,11 +1,12 @@
 {
-  "name": "react-native-tapsell",
-  "version": "2.9.1",
-  "description": "Tapsell sdk package for react native.",
-  "main": "tapsell.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+	"name": "react-native-tapsell",
+	"version": "2.9.1",
+	"description": "Tapsell sdk package for react native.",
+	"files": ["tapsell.js", "tapsell-native.js"],
+	"main": "tapsell.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC"
 }
