@@ -4,7 +4,10 @@
 	"description": "Tapsell sdk package for react native.",
 	"files": [
 		"tapsell.js",
-		"tapsell-native.js"
+		"tapsell-native.js",
+		"android",
+		"package.json",
+		"README.md"
 	],
 	"main": "tapsell.js",
 	"scripts": {
