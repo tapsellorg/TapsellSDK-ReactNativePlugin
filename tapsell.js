@@ -38,6 +38,10 @@ callbacks.ON_NO_NETWORK_EVENT = {};
 callbacks.ON_EXPIRING_EVENT = {};
 callbacks.ON_OPENED_EVENT = {};
 callbacks.ON_CLOSED_EVENT = {};
+callbacks.ON_AD_AVAILABLE_NATIVE_EVENT = {};
+callbacks.ON_ERROR_NATIVE_EVENT = {};
+callbacks.ON_NO_AD_AVAILABLE_NATIVE_EVENT = {};
+callbacks.ON_NO_NETWORK_NATIVE_EVENT = {};
 
 // Direct Ad Events
 DeviceEventEmitter.addListener(ON_AD_AVAILABLE_EVENT, event => {
