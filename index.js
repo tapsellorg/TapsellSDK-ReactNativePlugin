@@ -1,5 +1,4 @@
 let Tapsell = require("./src/tapsell.js");
-let AdVideo = require("./view/AdVideoComponent.js");
 let Constants = require("./src/constants.js");
 
 module.exports = {
@@ -28,5 +27,7 @@ module.exports = {
 	setMaxAllowedBandwidthUsagePercentage:
 		Tapsell.setMaxAllowedBandwidthUsagePercentage,
 	clearBandwidthUsageConstrains: Tapsell.clearBandwidthUsageConstrains,
-	AdVideo
+	get AdVideo() {
+		return require("./view/AdVideoComponent.js").default;
+	}
 };

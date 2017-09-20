@@ -20,45 +20,45 @@ callbacks[Constants.ON_NO_AD_AVAILABLE_NATIVE_EVENT] = {};
 callbacks[Constants.ON_NO_NETWORK_NATIVE_EVENT] = {};
 
 // Direct Ad Events
-DeviceEventEmitter.addListener(ON_AD_AVAILABLE_EVENT, event => {
+DeviceEventEmitter.addListener(Constants.ON_AD_AVAILABLE_EVENT, event => {
 	if (callbacks[Constants.ON_AD_AVAILABLE_EVENT][event.zone_id])
 		callbacks[Constants.ON_AD_AVAILABLE_EVENT][event.zone_id](
 			event.zone_id,
 			event.ad_id
 		);
 });
-DeviceEventEmitter.addListener(ON_ERROR_EVENT, event => {
+DeviceEventEmitter.addListener(Constants.ON_ERROR_EVENT, event => {
 	if (callbacks[Constants.ON_ERROR_EVENT][event.zone_id])
 		callbacks[Constants.ON_ERROR_EVENT][event.zone_id](
 			event.zone_id,
 			event.error_message
 		);
 });
-DeviceEventEmitter.addListener(ON_NO_AD_AVAILABLE_EVENT, event => {
+DeviceEventEmitter.addListener(Constants.ON_NO_AD_AVAILABLE_EVENT, event => {
 	if (callbacks[Constants.ON_NO_AD_AVAILABLE_EVENT][event.zone_id])
 		callbacks[Constants.ON_NO_AD_AVAILABLE_EVENT][event.zone_id](
 			event.zone_id
 		);
 });
-DeviceEventEmitter.addListener(ON_NO_NETWORK_EVENT, event => {
+DeviceEventEmitter.addListener(Constants.ON_NO_NETWORK_EVENT, event => {
 	if (callbacks[Constants.ON_NO_NETWORK_EVENT][event.zone_id])
 		callbacks[Constants.ON_NO_NETWORK_EVENT][event.zone_id](event.zone_id);
 });
-DeviceEventEmitter.addListener(ON_EXPIRING_EVENT, event => {
+DeviceEventEmitter.addListener(Constants.ON_EXPIRING_EVENT, event => {
 	if (callbacks[Constants.ON_EXPIRING_EVENT][event.zone_id])
 		callbacks[Constants.ON_EXPIRING_EVENT][event.zone_id](
 			event.zone_id,
 			event.ad_id
 		);
 });
-DeviceEventEmitter.addListener(ON_OPENED_EVENT, event => {
+DeviceEventEmitter.addListener(Constants.ON_OPENED_EVENT, event => {
 	if (callbacks[Constants.ON_OPENED_EVENT][event.ad_id])
 		callbacks[Constants.ON_OPENED_EVENT][event.ad_id](
 			event.zone_id,
 			event.ad_id
 		);
 });
-DeviceEventEmitter.addListener(ON_CLOSED_EVENT, event => {
+DeviceEventEmitter.addListener(Constants.ON_CLOSED_EVENT, event => {
 	if (callbacks[Constants.ON_CLOSED_EVENT][event.ad_id])
 		callbacks[Constants.ON_CLOSED_EVENT][event.ad_id](
 			event.zone_id,
@@ -67,28 +67,38 @@ DeviceEventEmitter.addListener(ON_CLOSED_EVENT, event => {
 });
 
 // Native Ad Events
-DeviceEventEmitter.addListener(ON_AD_AVAILABLE_NATIVE_EVENT, event => {
-	if (callbacks[Constants.ON_AD_AVAILABLE_NATIVE_EVENT][event.zone_id]) {
-		callbacks[Constants.ON_AD_AVAILABLE_NATIVE_EVENT][event.zone_id](
-			event,
-			onNativeBannerAdShown,
-			onNativeBannerAdClicked
-		);
+DeviceEventEmitter.addListener(
+	Constants.ON_AD_AVAILABLE_NATIVE_EVENT,
+	event => {
+		if (callbacks[Constants.ON_AD_AVAILABLE_NATIVE_EVENT][event.zone_id]) {
+			callbacks[Constants.ON_AD_AVAILABLE_NATIVE_EVENT][event.zone_id](
+				event,
+				onNativeBannerAdShown,
+				onNativeBannerAdClicked
+			);
+		}
 	}
-});
-DeviceEventEmitter.addListener(ON_ERROR_NATIVE_EVENT, event => {
+);
+DeviceEventEmitter.addListener(Constants.ON_ERROR_NATIVE_EVENT, event => {
 	if (callbacks[Constants.ON_ERROR_NATIVE_EVENT][event.zone_id]) {
 		callbacks[Constants.ON_ERROR_NATIVE_EVENT][event.zone_id](
 			event.error_message
 		);
 	}
 });
-DeviceEventEmitter.addListener(ON_NO_AD_AVAILABLE_NATIVE_EVENT, event => {
-	if (callbacks[Constants.ON_NO_AD_AVAILABLE_NATIVE_EVENT][event.zone_id]) {
-		callbacks[Constants.ON_NO_AD_AVAILABLE_NATIVE_EVENT][event.zone_id]();
+DeviceEventEmitter.addListener(
+	Constants.ON_NO_AD_AVAILABLE_NATIVE_EVENT,
+	event => {
+		if (
+			callbacks[Constants.ON_NO_AD_AVAILABLE_NATIVE_EVENT][event.zone_id]
+		) {
+			callbacks[Constants.ON_NO_AD_AVAILABLE_NATIVE_EVENT][
+				event.zone_id
+			]();
+		}
 	}
-});
-DeviceEventEmitter.addListener(ON_NO_NETWORK_NATIVE_EVENT, event => {
+);
+DeviceEventEmitter.addListener(Constants.ON_NO_NETWORK_NATIVE_EVENT, event => {
 	if (callbacks[Constants.ON_NO_NETWORK_NATIVE_EVENT][event.zone_id]) {
 		callbacks[Constants.ON_NO_NETWORK_NATIVE_EVENT][event.zone_id]();
 	}

@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { NativeModules, requireNativeComponent, View } from "react-native";
+import PropTypes from "prop-types";
 
 class AdVideoComponent extends Component {
 	constructor(props) {
@@ -12,7 +13,7 @@ class AdVideoComponent extends Component {
 }
 
 AdVideoComponent.propTypes = {
-	adId: PropTypes.string,
+	adId: PropTypes.string.isRequired,
 	...View.propTypes
 };
 
