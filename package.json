@@ -2,14 +2,8 @@
 	"name": "react-native-tapsell",
 	"version": "2.9.4",
 	"description": "Tapsell sdk package for react native.",
-	"files": [
-		"tapsell.js",
-		"tapsell-native.js",
-		"android",
-		"package.json",
-		"README.md"
-	],
-	"main": "tapsell.js",
+	"files": ["android", "src", "view", "package.json", "README.md"],
+	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},

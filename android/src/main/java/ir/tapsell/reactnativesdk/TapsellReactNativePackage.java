@@ -12,12 +12,13 @@ import java.util.Collections;
 import java.util.List;
 import ir.tapsell.sdk.NoProguard;
 import ir.tapsell.sdk.TapsellReactNativeModule;
+import ir.tapsell.sdk.nativeads.NativeVideoContainerViewManager;
 
 public class TapsellReactNativePackage implements ReactPackage, NoProguard {
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        return Collections.emptyList();
+        return Collections.<ViewManager>singletonList(new NativeVideoContainerViewManager());
     }
 
     @Override
