@@ -1,5 +1,6 @@
 let Tapsell = require("react-native").NativeModules.TapsellReactNative;
 import { DeviceEventEmitter } from "react-native";
+import Constants from "./constants.js";
 
 let onNativeVideoAdShown = ad_id => {
 	Tapsell.onNativeVideoAdShown(ad_id);
