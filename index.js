@@ -1,4 +1,5 @@
-let Tapsell = require("./src/tapsell.js");
+let TapsellUtil = require("./src/tapsell-util.js");
+let TapsellDirect = require("./src/tapsell-direct.js");
 let TapsellNativeBanner = require("./src/tapsell-native-banner.js");
 let TapsellNativeVideo = require("./src/tapsell-native-video.js");
 let Constants = require("./src/constants.js");
@@ -15,21 +16,21 @@ module.exports = {
 	PERMISSION_HANDLER_AUTO: Constants.PERMISSION_HANDLER_AUTO,
 	PERMISSION_HANDLER_AUTO_INSIST: Constants.PERMISSION_HANDLER_AUTO_INSIST,
 
-	initialize: Tapsell.initialize,
-	setDebugMode: Tapsell.setDebugMode,
-	isDebugMode: Tapsell.isDebugMode,
-	setAppUserId: Tapsell.setAppUserId,
-	getAppUserId: Tapsell.getAppUserId,
-	setPermissionHandlerConfig: Tapsell.setPermissionHandlerConfig,
-	getVersion: Tapsell.getVersion,
-	setMaxAllowedBandwidthUsage: Tapsell.setMaxAllowedBandwidthUsage,
+	initialize: TapsellUtil.initialize,
+	setDebugMode: TapsellUtil.setDebugMode,
+	isDebugMode: TapsellUtil.isDebugMode,
+	setAppUserId: TapsellUtil.setAppUserId,
+	getAppUserId: TapsellUtil.getAppUserId,
+	setPermissionHandlerConfig: TapsellUtil.setPermissionHandlerConfig,
+	getVersion: TapsellUtil.getVersion,
+	setMaxAllowedBandwidthUsage: TapsellUtil.setMaxAllowedBandwidthUsage,
 	setMaxAllowedBandwidthUsagePercentage:
-		Tapsell.setMaxAllowedBandwidthUsagePercentage,
-	clearBandwidthUsageConstrains: Tapsell.clearBandwidthUsageConstrains,
+		TapsellUtil.setMaxAllowedBandwidthUsagePercentage,
+	clearBandwidthUsageConstrains: TapsellUtil.clearBandwidthUsageConstrains,
 
-	showAd: Tapsell.showAd,
-	requestAd: Tapsell.requestAd,
-	setRewardListener: Tapsell.setRewardListener,
+	showAd: TapsellDirect.showAd,
+	requestAd: TapsellDirect.requestAd,
+	setRewardListener: TapsellDirect.setRewardListener,
 
 	requestNativeBannerAd: TapsellNativeBanner.requestNativeBannerAd,
 	requestNativeVideoAd: TapsellNativeVideo.requestNativeVideoAd,
