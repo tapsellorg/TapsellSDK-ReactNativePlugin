@@ -1,4 +1,6 @@
 let Tapsell = require("./src/tapsell.js");
+let TapsellNativeBanner = require("./src/tapsell-native-banner.js");
+let TapsellNativeVideo = require("./src/tapsell-native-video.js");
 let Constants = require("./src/constants.js");
 
 module.exports = {
@@ -12,11 +14,8 @@ module.exports = {
 	PERMISSION_HANDLER_DISABLED: Constants.PERMISSION_HANDLER_DISABLED,
 	PERMISSION_HANDLER_AUTO: Constants.PERMISSION_HANDLER_AUTO,
 	PERMISSION_HANDLER_AUTO_INSIST: Constants.PERMISSION_HANDLER_AUTO_INSIST,
+
 	initialize: Tapsell.initialize,
-	showAd: Tapsell.showAd,
-	requestAd: Tapsell.requestAd,
-	requestNativeAd: Tapsell.requestNativeAd,
-	setRewardListener: Tapsell.setRewardListener,
 	setDebugMode: Tapsell.setDebugMode,
 	isDebugMode: Tapsell.isDebugMode,
 	setAppUserId: Tapsell.setAppUserId,
@@ -27,6 +26,14 @@ module.exports = {
 	setMaxAllowedBandwidthUsagePercentage:
 		Tapsell.setMaxAllowedBandwidthUsagePercentage,
 	clearBandwidthUsageConstrains: Tapsell.clearBandwidthUsageConstrains,
+
+	showAd: Tapsell.showAd,
+	requestAd: Tapsell.requestAd,
+	setRewardListener: Tapsell.setRewardListener,
+
+	requestNativeBannerAd: TapsellNativeBanner.requestNativeBannerAd,
+	requestNativeVideoAd: TapsellNativeVideo.requestNativeVideoAd,
+
 	get AdVideo() {
 		return require("./view/AdVideoComponent.js").default;
 	}
