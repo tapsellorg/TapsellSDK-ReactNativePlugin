@@ -109,33 +109,15 @@ module.exports = {
 		Tapsell.initialize(appKey);
 	},
 	showAd: function(adOptions, onOpened, onClosed) {
-		if (onOpened) {
-			if (onClosed) {
-				callbacks[Constants.ON_CLOSED_EVENT][
-					adOptions.ad_id
-				] = onClosed;
-				callbacks[Constants.ON_OPENED_EVENT][
-					adOptions.ad_id
-				] = onOpened;
-				Tapsell.showAd(
-					adOptions.ad_id,
-					adOptions.back_disabled,
-					adOptions.immersive_mode,
-					adOptions.rotation_mode,
-					adOptions.show_exit_dialog,
-					onOpened,
-					onClosed
-				);
-			}
-		} else {
-			Tapsell.showAd(
-				adOptions.ad_id,
-				adOptions.back_disabled,
-				adOptions.immersive_mode,
-				adOptions.rotation_mode,
-				adOptions.show_exit_dialog
-			);
-		}
+		callbacks[Constants.ON_CLOSED_EVENT][adOptions.ad_id] = onClosed;
+		callbacks[Constants.ON_OPENED_EVENT][adOptions.ad_id] = onOpened;
+		Tapsell.showAd(
+			adOptions.ad_id,
+			adOptions.back_disabled,
+			adOptions.immersive_mode,
+			adOptions.rotation_mode,
+			adOptions.show_exit_dialog
+		);
 	},
 	requestAd: function(
 		zoneId,
