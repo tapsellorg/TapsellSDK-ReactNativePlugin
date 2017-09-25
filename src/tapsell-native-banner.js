@@ -3,11 +3,11 @@ import { DeviceEventEmitter } from "react-native";
 import Constants from "./constants.js";
 
 let onNativeBannerAdShown = ad_id => {
-	Tapsell.onNativeAdShown(ad_id);
+	Tapsell.onNativeBannerAdShown(ad_id);
 };
 
 let onNativeBannerAdClicked = ad_id => {
-	Tapsell.onNativeAdClicked(ad_id);
+	Tapsell.onNativeBannerAdClicked(ad_id);
 };
 
 let callbacks = {};

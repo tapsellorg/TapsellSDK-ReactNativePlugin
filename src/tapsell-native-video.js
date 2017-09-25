@@ -3,11 +3,11 @@ import { DeviceEventEmitter } from "react-native";
 import Constants from "./constants.js";
 
 let onNativeVideoAdShown = ad_id => {
-	Tapsell.onNativeAdShown(ad_id);
+	Tapsell.onNativeVideoAdShown(ad_id);
 };
 
 let onNativeVideoAdClicked = ad_id => {
-	Tapsell.onNativeAdClicked(ad_id);
+	Tapsell.onNativeVideoAdClicked(ad_id);
 };
 
 let callbacks = {};
