@@ -18,7 +18,7 @@ public class TapsellReactNativePackage implements ReactPackage, NoProguard {
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        return Collections.<ViewManager>singletonList(new NativeVideoContainerViewManager());
+        return Collections.<ViewManager>singletonList(new NativeVideoContainerViewManager(reactContext));
     }
 
     @Override
