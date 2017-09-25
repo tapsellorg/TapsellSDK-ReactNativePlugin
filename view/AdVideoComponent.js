@@ -24,7 +24,11 @@ class AdVideoComponent extends Component {
 			UIManager.dispatchViewManagerCommand(
 				findNodeHandle(this),
 				UIManager.AdVideo.Commands.setAdId,
-				[this.props.adId]
+				[
+					this.props.adId,
+					this.props.autoStartVideo,
+					this.props.fullScreenOnClick
+				]
 			);
 		}
 	}
@@ -44,6 +48,8 @@ class AdVideoComponent extends Component {
 
 AdVideoComponent.propTypes = {
 	adId: PropTypes.string.isRequired,
+	autoStartVideo: PropTypes.bool,
+	fullScreenOnClick: PropTypes.bool,
 	...View.propTypes
 };
 
