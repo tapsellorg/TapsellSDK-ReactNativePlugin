@@ -4,7 +4,8 @@ import {
 	requireNativeComponent,
 	View,
 	UIManager,
-	findNodeHandle
+	findNodeHandle,
+	Dimensions
 } from "react-native";
 import PropTypes from "prop-types";
 
