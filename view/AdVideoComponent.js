@@ -18,13 +18,13 @@ class AdVideoComponent extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		let adId = "";
-		let autoStart = false;
+		let autoStartVideo = false;
 		let fullScreenOnClick = false;
 		if (typeof nextProps.adId != "undefined") {
 			adId = nextProps.adId;
 		}
-		if (typeof nextProps.autoStart != "undefined") {
-			autoStart = nextProps.autoStart;
+		if (typeof nextProps.autoStartVideo != "undefined") {
+			autoStartVideo = nextProps.autoStartVideo;
 		}
 		if (typeof nextProps.fullScreenOnClick != "undefined") {
 			fullScreenOnClick = nextProps.fullScreenOnClick;
@@ -32,7 +32,7 @@ class AdVideoComponent extends Component {
 		UIManager.dispatchViewManagerCommand(
 			findNodeHandle(this),
 			UIManager.AdVideo.Commands.setAdId,
-			[adId, autoStart, fullScreenOnClick]
+			[adId, autoStartVideo, fullScreenOnClick]
 		);
 	}
 
