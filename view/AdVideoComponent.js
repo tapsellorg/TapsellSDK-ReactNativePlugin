@@ -13,28 +13,24 @@ const aspectRatio = 0.5625;
 class AdVideoComponent extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			adId: this.props.adId
-		};
 	}
 
-	componentWillReceiveProps() {
-		if (this.props.adId !== this.state.adId) {
-			this.setState({ adId: this.props.adId });
-			UIManager.dispatchViewManagerCommand(
-				findNodeHandle(this),
-				UIManager.AdVideo.Commands.setAdId,
-				[this.props.adId]
-			);
-		}
+	componentWillReceiveProps(nextProps) {
+		UIManager.dispatchViewManagerCommand(
+			findNodeHandle(this),
+			UIManager.AdVideo.Commands.setAdId,
+			[nextProps.adId]
+		);
 	}
 
 	render() {
+		let { height, width } = Dimensions.get("window");
 		return (
 			<AdVideo
 				style={{
-					aspectRatio: 1 / aspectRatio,
-					flex: 1
+					width: width,
+					backgroundColor: "black",
+					height: width * aspectRatio
 				}}
 				{...this.props}
 			/>
