@@ -1,0 +1,16 @@
+PODS:
+  - TSTapsell (0.1.0)
+
+DEPENDENCIES:
+  - TSTapsell (from `../`)
+
+EXTERNAL SOURCES:
+  TSTapsell:
+    :path: ../
+
+SPEC CHECKSUMS:
+  TSTapsell: 87ff95f794662107eeadd2dc4fb37693895a6a0d
+
+PODFILE CHECKSUM: aef3f80cb61ea32279c622c31405c1f21f8a5053
+
+COCOAPODS: 1.2.1

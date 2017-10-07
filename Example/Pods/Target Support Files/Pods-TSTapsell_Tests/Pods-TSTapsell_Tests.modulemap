@@ -1,0 +1,6 @@
+framework module Pods_TSTapsell_Tests {
+  umbrella header "Pods-TSTapsell_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}
