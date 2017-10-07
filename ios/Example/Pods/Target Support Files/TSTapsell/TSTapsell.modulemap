@@ -1,6 +1,0 @@
-framework module TSTapsell {
-  umbrella header "TSTapsell-umbrella.h"
-
-  export *
-  module * { export * }
-}
