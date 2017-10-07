@@ -7,74 +7,8 @@
 3 info using node@v6.11.0
 4 info git [ 'status', '--porcelain' ]
 5 verbose stack Error: Git working directory not clean.
-5 verbose stack M .DS_Store
-5 verbose stack M ios/.DS_Store
-5 verbose stack D ios/Example/.DS_Store
-5 verbose stack D ios/Example/Podfile
-5 verbose stack D ios/Example/Podfile.lock
-5 verbose stack D ios/Example/Pods/.DS_Store
-5 verbose stack D "ios/Example/Pods/Local Podspecs/TSTapsell.podspec.json"
-5 verbose stack D ios/Example/Pods/Manifest.lock
-5 verbose stack D ios/Example/Pods/Pods.xcodeproj/project.pbxproj
-5 verbose stack D ios/Example/Pods/Pods.xcodeproj/project.xcworkspace/contents.xcworkspacedata
-5 verbose stack D ios/Example/Pods/Pods.xcodeproj/xcuserdata/tapsell.xcuserdatad/xcschemes/Pods-TSTapsell_Tests.xcscheme
-5 verbose stack D ios/Example/Pods/Pods.xcodeproj/xcuserdata/tapsell.xcuserdatad/xcschemes/TSTapsell.xcscheme
-5 verbose stack D ios/Example/Pods/Pods.xcodeproj/xcuserdata/tapsell.xcuserdatad/xcschemes/xcschememanagement.plist
-5 verbose stack D "ios/Example/Pods/Target Support Files/.DS_Store"
-5 verbose stack D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Info.plist"
-5 verbose stack D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests-acknowledgements.markdown"
-5 verbose stack D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests-acknowledgements.plist"
-5 verbose stack D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests-dummy.m"
-5 verbose stack D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests-frameworks.sh"
-5 verbose stack D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests-resources.sh"
-5 verbose stack D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests-umbrella.h"
-5 verbose stack D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests.debug.xcconfig"
-5 verbose stack D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests.modulemap"
-5 verbose stack D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests.release.xcconfig"
-5 verbose stack D "ios/Example/Pods/Target Support Files/TSTapsell/Info.plist"
-5 verbose stack D "ios/Example/Pods/Target Support Files/TSTapsell/TSTapsell-dummy.m"
-5 verbose stack D "ios/Example/Pods/Target Support Files/TSTapsell/TSTapsell-prefix.pch"
-5 verbose stack D "ios/Example/Pods/Target Support Files/TSTapsell/TSTapsell-umbrella.h"
-5 verbose stack D "ios/Example/Pods/Target Support Files/TSTapsell/TSTapsell.modulemap"
-5 verbose stack D "ios/Example/Pods/Target Support Files/TSTapsell/TSTapsell.xcconfig"
-5 verbose stack D ios/Example/TSTapsell.xcodeproj/project.pbxproj
-5 verbose stack D ios/Example/TSTapsell.xcodeproj/project.xcworkspace/contents.xcworkspacedata
-5 verbose stack D ios/Example/TSTapsell.xcodeproj/xcshareddata/xcschemes/TSTapsell-Example.xcscheme
-5 verbose stack D ios/Example/TSTapsell.xcodeproj/xcuserdata/tapsell.xcuserdatad/xcschemes/xcschememanagement.plist
-5 verbose stack D ios/Example/TSTapsell.xcworkspace/contents.xcworkspacedata
-5 verbose stack D ios/Example/TSTapsell.xcworkspace/xcuserdata/tapsell.xcuserdatad/UserInterfaceState.xcuserstate
-5 verbose stack D ios/Example/Tests/.DS_Store
-5 verbose stack D ios/Example/Tests/Tests-Info.plist
-5 verbose stack D ios/Example/Tests/Tests-Prefix.pch
-5 verbose stack D ios/Example/Tests/Tests.m
-5 verbose stack D ios/Example/Tests/en.lproj/InfoPlist.strings
-5 verbose stack M ios/TSTapsell.podspec
-5 verbose stack D ios/TSTapsell/.DS_Store
-5 verbose stack D ios/TSTapsell/Assets/.gitkeep
-5 verbose stack D ios/TSTapsell/Classes/.DS_Store
-5 verbose stack D ios/TSTapsell/Classes/.gitkeep
-5 verbose stack D ios/TSTapsell/Classes/TSTapsell.h
-5 verbose stack D ios/TSTapsell/Classes/TSTapsell.m
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Close.png
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/DastNevis.otf
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TSAdRequestOptions.h
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TSAdShowOptions.h
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TSConfiguration.h
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TSWebViewController.h
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/Tapsell.h
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TapsellAd.h
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TapsellExtraPlatformsController.h
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TapsellSDKv3.h
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TapsellVAST.h
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Info.plist
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Modules/module.modulemap
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Skip.png
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/SoundOff.png
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/SoundOn.png
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/TapsellSDKv3
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/Yekan.ttf
-5 verbose stack D ios/TSTapsell/Classes/TapsellSDKv3.framework/_CodeSignature/CodeResources
-5 verbose stack D ios/_Pods.xcodeproj
+5 verbose stack D npm-debug.log
+5 verbose stack M package.json
 5 verbose stack     at /opt/local/lib/node_modules/npm/lib/version.js:247:19
 5 verbose stack     at /opt/local/lib/node_modules/npm/lib/utils/no-progress-while-running.js:21:8
 5 verbose stack     at ChildProcess.exithandler (child_process.js:195:7)
@@ -91,74 +25,8 @@
 9 error node v6.11.0
 10 error npm  v3.10.10
 11 error Git working directory not clean.
-11 error M .DS_Store
-11 error M ios/.DS_Store
-11 error D ios/Example/.DS_Store
-11 error D ios/Example/Podfile
-11 error D ios/Example/Podfile.lock
-11 error D ios/Example/Pods/.DS_Store
-11 error D "ios/Example/Pods/Local Podspecs/TSTapsell.podspec.json"
-11 error D ios/Example/Pods/Manifest.lock
-11 error D ios/Example/Pods/Pods.xcodeproj/project.pbxproj
-11 error D ios/Example/Pods/Pods.xcodeproj/project.xcworkspace/contents.xcworkspacedata
-11 error D ios/Example/Pods/Pods.xcodeproj/xcuserdata/tapsell.xcuserdatad/xcschemes/Pods-TSTapsell_Tests.xcscheme
-11 error D ios/Example/Pods/Pods.xcodeproj/xcuserdata/tapsell.xcuserdatad/xcschemes/TSTapsell.xcscheme
-11 error D ios/Example/Pods/Pods.xcodeproj/xcuserdata/tapsell.xcuserdatad/xcschemes/xcschememanagement.plist
-11 error D "ios/Example/Pods/Target Support Files/.DS_Store"
-11 error D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Info.plist"
-11 error D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests-acknowledgements.markdown"
-11 error D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests-acknowledgements.plist"
-11 error D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests-dummy.m"
-11 error D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests-frameworks.sh"
-11 error D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests-resources.sh"
-11 error D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests-umbrella.h"
-11 error D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests.debug.xcconfig"
-11 error D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests.modulemap"
-11 error D "ios/Example/Pods/Target Support Files/Pods-TSTapsell_Tests/Pods-TSTapsell_Tests.release.xcconfig"
-11 error D "ios/Example/Pods/Target Support Files/TSTapsell/Info.plist"
-11 error D "ios/Example/Pods/Target Support Files/TSTapsell/TSTapsell-dummy.m"
-11 error D "ios/Example/Pods/Target Support Files/TSTapsell/TSTapsell-prefix.pch"
-11 error D "ios/Example/Pods/Target Support Files/TSTapsell/TSTapsell-umbrella.h"
-11 error D "ios/Example/Pods/Target Support Files/TSTapsell/TSTapsell.modulemap"
-11 error D "ios/Example/Pods/Target Support Files/TSTapsell/TSTapsell.xcconfig"
-11 error D ios/Example/TSTapsell.xcodeproj/project.pbxproj
-11 error D ios/Example/TSTapsell.xcodeproj/project.xcworkspace/contents.xcworkspacedata
-11 error D ios/Example/TSTapsell.xcodeproj/xcshareddata/xcschemes/TSTapsell-Example.xcscheme
-11 error D ios/Example/TSTapsell.xcodeproj/xcuserdata/tapsell.xcuserdatad/xcschemes/xcschememanagement.plist
-11 error D ios/Example/TSTapsell.xcworkspace/contents.xcworkspacedata
-11 error D ios/Example/TSTapsell.xcworkspace/xcuserdata/tapsell.xcuserdatad/UserInterfaceState.xcuserstate
-11 error D ios/Example/Tests/.DS_Store
-11 error D ios/Example/Tests/Tests-Info.plist
-11 error D ios/Example/Tests/Tests-Prefix.pch
-11 error D ios/Example/Tests/Tests.m
-11 error D ios/Example/Tests/en.lproj/InfoPlist.strings
-11 error M ios/TSTapsell.podspec
-11 error D ios/TSTapsell/.DS_Store
-11 error D ios/TSTapsell/Assets/.gitkeep
-11 error D ios/TSTapsell/Classes/.DS_Store
-11 error D ios/TSTapsell/Classes/.gitkeep
-11 error D ios/TSTapsell/Classes/TSTapsell.h
-11 error D ios/TSTapsell/Classes/TSTapsell.m
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Close.png
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/DastNevis.otf
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TSAdRequestOptions.h
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TSAdShowOptions.h
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TSConfiguration.h
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TSWebViewController.h
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/Tapsell.h
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TapsellAd.h
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TapsellExtraPlatformsController.h
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TapsellSDKv3.h
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Headers/TapsellVAST.h
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Info.plist
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Modules/module.modulemap
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Skip.png
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/SoundOff.png
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/SoundOn.png
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/TapsellSDKv3
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/Yekan.ttf
-11 error D ios/TSTapsell/Classes/TapsellSDKv3.framework/_CodeSignature/CodeResources
-11 error D ios/_Pods.xcodeproj
+11 error D npm-debug.log
+11 error M package.json
 12 error If you need help, you may report this error at:
 12 error     <https://github.com/npm/npm/issues>
 13 verbose exit [ 1, true ]
