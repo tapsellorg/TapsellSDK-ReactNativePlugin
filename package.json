@@ -1,22 +1,15 @@
 {
-  "name": "react-native-tapsell",
-  "version": "2.13.3",
-  "description": "Tapsell sdk package for react native.",
-  "files": [
-    "android",
-    "ios",
-    "src",
-    "view",
-    "package.json",
-    "README.md"
-  ],
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "prop-types": "^15.5.10"
-  }
+	"name": "react-native-tapsell",
+	"version": "2.13.3",
+	"description": "Tapsell sdk package for react native.",
+	"files": ["android", "ios", "src", "view", "package.json", "README.md"],
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"prop-types": "^15.5.10"
+	}
 }
