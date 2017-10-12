@@ -11,7 +11,7 @@ module.exports = {
 		Tapsell.isDebugMode(debugMode);
 	},
 	setAppUserId: function(appUserId) {
-		Tapsell.setAppUserId(getReactApplicationContext(), appUserId);
+		Tapsell.setAppUserId(appUserId);
 	},
 	getAppUserId: function(userId) {
 		Tapsell.getAppUserId(userId);
