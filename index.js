@@ -15,6 +15,10 @@ module.exports = {
 	PERMISSION_HANDLER_DISABLED: Constants.PERMISSION_HANDLER_DISABLED,
 	PERMISSION_HANDLER_AUTO: Constants.PERMISSION_HANDLER_AUTO,
 	PERMISSION_HANDLER_AUTO_INSIST: Constants.PERMISSION_HANDLER_AUTO_INSIST,
+	BANNER_320x50: Constants.BANNER_320x50,
+	BANNER_320x100: Constants.BANNER_320x100,
+	BANNER_250x250: Constants.BANNER_250x250,
+	BANNER_300x250: Constants.BANNER_300x250,
 
 	initialize: TapsellUtil.initialize,
 	setDebugMode: TapsellUtil.setDebugMode,
@@ -37,5 +41,9 @@ module.exports = {
 
 	get AdVideo() {
 		return require("./view/AdVideoComponent.js").default;
+	},
+
+	get BannerAd() {
+		return require("./view/BannerAdComponent.js").default;
 	}
 };
