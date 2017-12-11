@@ -84,6 +84,7 @@ RCT_EXPORT_METHOD(showAd:(NSDictionary*) options) {
       andClosedCallback:^(TapsellAd * _Nullable ad){
           [self sendEventWithName:ON_CLOSED_EVENT body:@{ZONE_ID_KEY: ad.getZoneId, AD_ID_KEY: ad.getId}];
       }];
+      [self.tapsellAds removeObjectForKey:adId];
 }
 
 RCT_EXPORT_METHOD(setRewardListener:(RCTResponseSenderBlock)callback) {
