@@ -13,8 +13,9 @@ callbacks[Constants.ON_OPENED_EVENT] = {};
 callbacks[Constants.ON_CLOSED_EVENT] = {};
 
 const appEventEmitter =
-	Platform.OS === "ios" ? NativeEventEmitter : DeviceEventEmitter;
-
+	Platform.OS === "ios"
+		? new NativeEventEmitter(TapsellIOS)
+		: DeviceEventEmitter;
 // Direct Ad Events
 appEventEmitter.addListener(Constants.ON_AD_AVAILABLE_EVENT, event => {
 	if (callbacks[Constants.ON_AD_AVAILABLE_EVENT][event.zone_id])
@@ -36,10 +37,14 @@ appEventEmitter.addListener(Constants.ON_NO_AD_AVAILABLE_EVENT, event => {
 			event.zone_id
 		);
 });
-appEventEmitter.addListener(Constants.ON_NO_NETWORK_EVENT, event => {
-	if (callbacks[Constants.ON_NO_NETWORK_EVENT][event.zone_id])
-		callbacks[Constants.ON_NO_NETWORK_EVENT][event.zone_id](event.zone_id);
-});
+if (Platform.OS === "android") {
+	appEventEmitter.addListener(Constants.ON_NO_NETWORK_EVENT, event => {
+		if (callbacks[Constants.ON_NO_NETWORK_EVENT][event.zone_id])
+			callbacks[Constants.ON_NO_NETWORK_EVENT][event.zone_id](
+				event.zone_id
+			);
+	});
+}
 appEventEmitter.addListener(Constants.ON_EXPIRING_EVENT, event => {
 	if (callbacks[Constants.ON_EXPIRING_EVENT][event.zone_id])
 		callbacks[Constants.ON_EXPIRING_EVENT][event.zone_id](
