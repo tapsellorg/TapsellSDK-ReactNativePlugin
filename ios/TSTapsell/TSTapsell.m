@@ -1,5 +1,9 @@
 #import "TSTapsell.h"
 
+@interface TSTapsell()
+@property (strong, nonatomic, readwrite) NSMutableDictionary * tapsellAds;
+@end
+
 @implementation TSTapsell
 
 RCT_EXPORT_MODULE();
@@ -46,6 +50,24 @@ RCT_EXPORT_METHOD(initialize:(NSString *)appKey) {
     [Tapsell initializeWithAppKey:appKey];
     self.tapsellAds = [[NSMutableDictionary alloc] init];
 }
+
+RCT_EXPORT_METHOD(isDebugMode:(RCTResponseSenderBlock)callback) {
+    BOOL mode = [Tapsell isDebugMode];
+    callback(@[[NSNumber numberWithBool:mode]]);
+}
+
+RCT_EXPORT_METHOD(setDebugMode:(BOOL)debugMode) {
+    [Tapsell setDebugMode:debugMode];
+}
+
+RCT_EXPORT_METHOD(getAppUserId:(RCTResponseSenderBlock)callback) {
+    callback(@[[Tapsell getAppUserId]]);
+}
+
+RCT_EXPORT_METHOD(setAppUserId:(NSString*)appUserId) {
+    [Tapsell setAppUserId:appUserId];
+}
+
 
 RCT_EXPORT_METHOD(requestAd:(NSString*)zoneId options:(NSInteger)cacheType) {
     TSAdRequestOptions* requestOptions = [[TSAdRequestOptions alloc] init];

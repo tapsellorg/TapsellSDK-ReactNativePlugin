@@ -29,5 +29,4 @@ NSString *const AD_ID_KEY = @"ad_id";
 NSString *const ZONE_ID_KEY = @"zone_id";
 
 @interface TSTapsell : RCTEventEmitter <RCTBridgeModule>
-@property (strong, nonatomic) NSMutableDictionary * tapsellAds;
 @end

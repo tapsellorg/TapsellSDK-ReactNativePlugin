@@ -3,34 +3,29 @@ let TapsellIOS = require("react-native").NativeModules.TSTapsell;
 import { Platform } from "react-native";
 
 if (Platform.OS === "ios") {
-    module.exports = {
+	module.exports = {
 		initialize: function(appKey) {
 			TapsellIOS.initialize(appKey);
 		},
 		setDebugMode: function(mode) {
-			// TapsellIOS.setDebugMode(mode);
+			TapsellIOS.setDebugMode(mode);
 		},
 		isDebugMode: function(debugMode) {
-			// TapsellIOS.isDebugMode(debugMode);
+			TapsellIOS.isDebugMode(debugMode);
 		},
 		setAppUserId: function(appUserId) {
-			// TapsellIOS.setAppUserId(getReactApplicationContext(), appUserId);
+			TapsellIOS.setAppUserId(getReactApplicationContext(), appUserId);
 		},
 		getAppUserId: function(userId) {
-			// TapsellIOS.getAppUserId(userId);
+			TapsellIOS.getAppUserId(userId);
 		},
+		setPermissionHandlerConfig: function(permissionHandlerConfig) {},
 		getVersion: function(version) {
-			// TapsellIOS.getVersion(version);
+			TapsellIOS.getVersion(version);
 		},
-		setMaxAllowedBandwidthUsage: function(maxBpsSpeed) {
-			// TapsellIOS.setMaxAllowedBandwidthUsage(maxBpsSpeed);
-		},
-		setMaxAllowedBandwidthUsagePercentage: function(maxPercentage) {
-			// TapsellIOS.setMaxAllowedBandwidthUsagePercentage(maxPercentage);
-		},
-		clearBandwidthUsageConstrains: function() {
-			// TapsellIOS.clearBandwidthUsageConstrains();
-		}
+		setMaxAllowedBandwidthUsage: function(maxBpsSpeed) {},
+		setMaxAllowedBandwidthUsagePercentage: function(maxPercentage) {},
+		clearBandwidthUsageConstrains: function() {}
 	};
 } else {
 	module.exports = {
