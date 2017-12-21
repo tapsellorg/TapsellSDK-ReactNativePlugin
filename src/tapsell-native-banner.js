@@ -1,13 +1,22 @@
 let Tapsell = require("react-native").NativeModules.TapsellReactNative;
-import { DeviceEventEmitter } from "react-native";
+let TapsellIOS = require("react-native").NativeModules.TSTapsell;
+import { DeviceEventEmitter, Platform, NativeEventEmitter } from "react-native";
 import Constants from "./constants.js";
 
 let onNativeBannerAdShown = ad_id => {
-	Tapsell.onNativeBannerAdShown(ad_id);
+	if (Platform.OS == "ios") {
+		TapsellIOS.onNativeBannerAdShown(ad_id);
+	} else {
+		Tapsell.onNativeBannerAdShown(ad_id);
+	}
 };
 
 let onNativeBannerAdClicked = ad_id => {
-	Tapsell.onNativeBannerAdClicked(ad_id);
+	if (Platform.OS == "ios") {
+		TapsellIOS.onNativeBannerAdClicked(ad_id);
+	} else {
+		Tapsell.onNativeBannerAdClicked(ad_id);
+	}
 };
 
 let callbacks = {};
@@ -15,9 +24,13 @@ callbacks[Constants.ON_AD_AVAILABLE_NATIVE_BANNER_EVENT] = {};
 callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT] = {};
 callbacks[Constants.ON_NO_AD_AVAILABLE_NATIVE_BANNER_EVENT] = {};
 callbacks[Constants.ON_NO_NETWORK_NATIVE_BANNER_EVENT] = {};
+const appEventEmitter =
+	Platform.OS === "ios"
+		? new NativeEventEmitter(TapsellIOS)
+		: DeviceEventEmitter;
 
 // Native Banner Ad Events
-DeviceEventEmitter.addListener(
+appEventEmitter.addListener(
 	Constants.ON_AD_AVAILABLE_NATIVE_BANNER_EVENT,
 	event => {
 		if (
@@ -31,17 +44,14 @@ DeviceEventEmitter.addListener(
 		}
 	}
 );
-DeviceEventEmitter.addListener(
-	Constants.ON_ERROR_NATIVE_BANNER_EVENT,
-	event => {
-		if (callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT][event.zone_id]) {
-			callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT][event.zone_id](
-				event.error_message
-			);
-		}
+appEventEmitter.addListener(Constants.ON_ERROR_NATIVE_BANNER_EVENT, event => {
+	if (callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT][event.zone_id]) {
+		callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT][event.zone_id](
+			event.error_message
+		);
 	}
-);
-DeviceEventEmitter.addListener(
+});
+appEventEmitter.addListener(
 	Constants.ON_NO_AD_AVAILABLE_NATIVE_BANNER_EVENT,
 	event => {
 		if (
@@ -55,7 +65,7 @@ DeviceEventEmitter.addListener(
 		}
 	}
 );
-DeviceEventEmitter.addListener(
+appEventEmitter.addListener(
 	Constants.ON_NO_NETWORK_NATIVE_BANNER_EVENT,
 	event => {
 		if (
@@ -87,5 +97,9 @@ export var requestNativeBannerAd = (
 		zoneId
 	] = onNoNetwork;
 	callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT][zoneId] = onError;
-	Tapsell.requestNativeBannerAd(zoneId);
+	if (Platform.OS == "ios") {
+		TapsellIOS.requestNativeBannerAd(zoneId);
+	} else {
+		Tapsell.requestNativeBannerAd(zoneId);
+	}
 };

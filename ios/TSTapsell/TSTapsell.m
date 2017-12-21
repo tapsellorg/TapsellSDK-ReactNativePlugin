@@ -1,9 +1,5 @@
 #import "TSTapsell.h"
 
-@interface TSTapsell()
-@property (strong, nonatomic, readwrite) NSMutableDictionary * tapsellAds;
-@end
-
 @implementation TSTapsell
 
 RCT_EXPORT_MODULE();
@@ -51,24 +47,6 @@ RCT_EXPORT_METHOD(initialize:(NSString *)appKey) {
     self.tapsellAds = [[NSMutableDictionary alloc] init];
 }
 
-RCT_EXPORT_METHOD(isDebugMode:(RCTResponseSenderBlock)callback) {
-    BOOL mode = [Tapsell isDebugMode];
-    callback(@[[NSNumber numberWithBool:mode]]);
-}
-
-RCT_EXPORT_METHOD(setDebugMode:(BOOL)debugMode) {
-    [Tapsell setDebugMode:debugMode];
-}
-
-RCT_EXPORT_METHOD(getAppUserId:(RCTResponseSenderBlock)callback) {
-    callback(@[[Tapsell getAppUserId]]);
-}
-
-RCT_EXPORT_METHOD(setAppUserId:(NSString*)appUserId) {
-    [Tapsell setAppUserId:appUserId];
-}
-
-
 RCT_EXPORT_METHOD(requestAd:(NSString*)zoneId options:(NSInteger)cacheType) {
     TSAdRequestOptions* requestOptions = [[TSAdRequestOptions alloc] init];
     [requestOptions setCacheType:cacheType];
@@ -106,7 +84,24 @@ RCT_EXPORT_METHOD(showAd:(NSDictionary*) options) {
       andClosedCallback:^(TapsellAd * _Nullable ad){
           [self sendEventWithName:ON_CLOSED_EVENT body:@{ZONE_ID_KEY: ad.getZoneId, AD_ID_KEY: ad.getId}];
       }];
-      [self.tapsellAds removeObjectForKey:adId];
+}
+
+RCT_EXPORT_METHOD(requestNativeBannerAd:(NSString*)zoneId) {
+    [Tapsell requestNativeBannerAdForZone:zoneId onAdAvailable:^(TSNativeBannerAdWrapper *nativeBannerAd) {
+        [self sendEventWithName:ON_AD_AVAILABLE_NATIVE_BANNER_EVENT body:@{@"ad_id": nativeBannerAd.adId, @"zone_id": zoneId, @"title": nativeBannerAd.title, @"description": nativeBannerAd.htmlDescription, @"call_to_action_text": nativeBannerAd.callToActionText, @"icon_url": nativeBannerAd.logoUrl, @"portriat_static_image_url": nativeBannerAd.portriatImageUrl, @"landscape_static_image_url": nativeBannerAd.landscapeImageUrl}];
+    } onNoAdAvailable:^{
+        [self sendEventWithName:ON_NO_AD_AVAILABLE_NATIVE_BANNER_EVENT body:@{ZONE_ID_KEY: zoneId}];
+    } onError:^(NSString * _Nullable error) {
+        [self sendEventWithName:ON_ERROR_NATIVE_BANNER_EVENT body:@{ZONE_ID_KEY: zoneId, ERROR_KEY: error}];
+    }];
+}
+
+RCT_EXPORT_METHOD(onNativeBannerAdShown:(NSString*)adId) {
+    [Tapsell nativeBannerAdShowWithAdId:adId];
+}
+    
+RCT_EXPORT_METHOD(onNativeBannerAdClicked:(NSString*)adId) {
+    [Tapsell nativeBannerAdClickedWithAdId:adId];
 }
 
 RCT_EXPORT_METHOD(setRewardListener:(RCTResponseSenderBlock)callback) {
