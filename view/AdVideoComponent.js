@@ -5,11 +5,16 @@ import {
 	View,
 	UIManager,
 	findNodeHandle,
+	Platform,
 	Dimensions
 } from "react-native";
 import PropTypes from "prop-types";
+let TapsellIOS = require("react-native").NativeModules.RNTAdVideoManager;
 
 const aspectRatio = 0.5625;
+
+let AdVideoKey = "AdVideo";
+if (Platform.OS == "ios") AdVideoKey = "RNTAdVideo";
 
 class AdVideoComponent extends Component {
 	constructor(props) {
@@ -29,11 +34,15 @@ class AdVideoComponent extends Component {
 		if (typeof nextProps.fullScreenOnClick != "undefined") {
 			fullScreenOnClick = nextProps.fullScreenOnClick;
 		}
-		UIManager.dispatchViewManagerCommand(
-			findNodeHandle(this),
-			UIManager.AdVideo.Commands.setAdId,
-			[adId, autoStartVideo, fullScreenOnClick]
-		);
+		if (Platform.OS == "android") {
+			UIManager.dispatchViewManagerCommand(
+				findNodeHandle(this),
+				UIManager.AdVideo.Commands.setAdId,
+				[adId, autoStartVideo, fullScreenOnClick]
+			);
+		} else if (Platform.OS == "ios") {
+			TapsellIOS.loadAd(nextProps.adId);
+		}
 	}
 
 	render() {
@@ -53,12 +62,10 @@ class AdVideoComponent extends Component {
 
 AdVideoComponent.propTypes = {
 	adId: PropTypes.string.isRequired,
-	fullScreenOnClick: PropTypes.bool,
-	autoStartVideo: PropTypes.bool,
 	...View.propTypes
 };
 
-const AdVideo = requireNativeComponent(`AdVideo`, AdVideoComponent, {
+const AdVideo = requireNativeComponent(AdVideoKey, AdVideoComponent, {
 	nativeOnly: {}
 });
 
