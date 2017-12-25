@@ -1,4 +1,4 @@
-#import "RCTViewManager.h"
+#import <React/RCTViewManager.h>
 #import <TapsellSDKv3/TapsellSDKv3.h>
 
 @interface RNTAdVideoManager : RCTViewManager
