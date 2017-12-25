@@ -3,21 +3,25 @@
 
 @implementation RNTAdVideoManager
 RCT_EXPORT_MODULE()
+CGFloat aspectRatio = 0.5625;
 
 - (UIView *)view
 {
-    TSNativeVideoAdView* videoView = [[TSNativeVideoAdView alloc] init];
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    _videoView = [[TSNativeVideoAdView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenWidth*aspectRatio)];
     TSNativeVideoContainerView* videoContainer = [[TSNativeVideoContainerView alloc] init];
     [videoContainer setTag:4];
-    [videoView addSubview:videoContainer];
-    [videoContainer setFrame:CGRectMake(videoView.bounds.origin.x, videoView.bounds.origin.y, videoView.frame.size.width, videoView.frame.size.height)];
-    _videoView = videoView;
-    return videoView;
+    [videoContainer setFrame:CGRectMake(_videoView.bounds.origin.x, _videoView.bounds.origin.y, _videoView.frame.size.width, _videoView.frame.size.height)];
+    [_videoView addSubview:videoContainer];
+    return _videoView;
 }
 
 RCT_EXPORT_METHOD(loadAd:(NSString*)adId) {
     if (adId != nil) {
-        [_videoView fillVideoView:adId withUrl:[[TSTapsell nativeVideos] objectForKey:adId]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_videoView fillVideoView:adId withUrl:[[TSTapsell nativeVideos] objectForKey:adId]];
+        });
     }
 }
 
