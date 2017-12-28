@@ -60,7 +60,11 @@ RCT_EXPORT_MODULE();
              @"ON_AD_AVAILABLE_NATIVE_VIDEO_EVENT" : ON_AD_AVAILABLE_NATIVE_VIDEO_EVENT,
              @"ON_ERROR_NATIVE_VIDEO_EVENT" : ON_ERROR_NATIVE_VIDEO_EVENT,
              @"ON_NO_AD_AVAILABLE_NATIVE_VIDEO_EVENT" : ON_NO_AD_AVAILABLE_NATIVE_VIDEO_EVENT,
-             @"ON_NO_NETWORK_NATIVE_VIDEO_EVENT" : ON_NO_NETWORK_NATIVE_VIDEO_EVENT
+             @"ON_NO_NETWORK_NATIVE_VIDEO_EVENT" : ON_NO_NETWORK_NATIVE_VIDEO_EVENT,
+             @"BANNER_320x50": [NSNumber numberWithInteger:BANNER_320x50],
+             @"BANNER_320x100": [NSNumber numberWithInteger:BANNER_320x100],
+             @"BANNER_250x250": [NSNumber numberWithInteger:BANNER_250x250],
+             @"BANNER_300x250": [NSNumber numberWithInteger:BANNER_300x250]
          };
 }
 
@@ -161,5 +165,9 @@ RCT_EXPORT_METHOD(setRewardListener:(RCTResponseSenderBlock)callback) {
                    [NSNumber numberWithBool:completed],
                    [NSNumber numberWithBool:ad.isRewardedAd]]);
     }];
+}
+
+RCT_EXPORT_METHOD(setDebugMode:(NSInteger)mode) {
+    [Tapsell setDebugMode:mode];
 }
 @end
