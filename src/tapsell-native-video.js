@@ -1,13 +1,16 @@
 let Tapsell = require("react-native").NativeModules.TapsellReactNative;
-import { DeviceEventEmitter } from "react-native";
+let TapsellIOS = require("react-native").NativeModules.TSTapsell;
+import { DeviceEventEmitter, Platform, NativeEventEmitter } from "react-native";
 import Constants from "./constants.js";
 
 let onNativeVideoAdShown = ad_id => {
-	Tapsell.onNativeVideoAdShown(ad_id);
+	if (Platform.OS == "ios") TapsellIOS.onNativeVideoAdShown(ad_id);
+	else Tapsell.onNativeVideoAdShown(ad_id);
 };
 
 let onNativeVideoAdClicked = ad_id => {
-	Tapsell.onNativeVideoAdClicked(ad_id);
+	if (Platform.OS == "ios") TapsellIOS.onNativeVideoAdClicked(ad_id);
+	else Tapsell.onNativeVideoAdClicked(ad_id);
 };
 
 let callbacks = {};
@@ -16,8 +19,12 @@ callbacks[Constants.ON_ERROR_NATIVE_VIDEO_EVENT] = {};
 callbacks[Constants.ON_NO_AD_AVAILABLE_NATIVE_VIDEO_EVENT] = {};
 callbacks[Constants.ON_NO_NETWORK_NATIVE_VIDEO_EVENT] = {};
 
+const appEventEmitter =
+	Platform.OS === "ios"
+		? new NativeEventEmitter(TapsellIOS)
+		: DeviceEventEmitter;
 // Native Video Ad Events
-DeviceEventEmitter.addListener(
+appEventEmitter.addListener(
 	Constants.ON_AD_AVAILABLE_NATIVE_VIDEO_EVENT,
 	event => {
 		if (
@@ -31,14 +38,14 @@ DeviceEventEmitter.addListener(
 		}
 	}
 );
-DeviceEventEmitter.addListener(Constants.ON_ERROR_NATIVE_VIDEO_EVENT, event => {
+appEventEmitter.addListener(Constants.ON_ERROR_NATIVE_VIDEO_EVENT, event => {
 	if (callbacks[Constants.ON_ERROR_NATIVE_VIDEO_EVENT][event.zone_id]) {
 		callbacks[Constants.ON_ERROR_NATIVE_VIDEO_EVENT][event.zone_id](
 			event.error_message
 		);
 	}
 });
-DeviceEventEmitter.addListener(
+appEventEmitter.addListener(
 	Constants.ON_NO_AD_AVAILABLE_NATIVE_VIDEO_EVENT,
 	event => {
 		if (
@@ -52,7 +59,7 @@ DeviceEventEmitter.addListener(
 		}
 	}
 );
-DeviceEventEmitter.addListener(
+appEventEmitter.addListener(
 	Constants.ON_NO_NETWORK_NATIVE_VIDEO_EVENT,
 	event => {
 		if (
@@ -80,5 +87,6 @@ export var requestNativeVideoAd = (
 	] = onNoAdAvailable;
 	callbacks[Constants.ON_NO_NETWORK_NATIVE_VIDEO_EVENT][zoneId] = onNoNetwork;
 	callbacks[Constants.ON_ERROR_NATIVE_VIDEO_EVENT][zoneId] = onError;
-	Tapsell.requestNativeVideoAd(zoneId);
+	if (Platform.OS == "ios") TapsellIOS.requestNativeVideoAd(zoneId);
+	else Tapsell.requestNativeVideoAd(zoneId);
 };

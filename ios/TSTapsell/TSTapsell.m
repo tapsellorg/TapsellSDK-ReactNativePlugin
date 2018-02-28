@@ -1,5 +1,27 @@
 #import "TSTapsell.h"
 
+NSString *const ON_AD_AVAILABLE_EVENT=@"onAdAvailable";
+NSString *const ON_ERROR_EVENT=@"onError";
+NSString *const ON_NO_AD_AVAILABLE_EVENT=@"onNoAdAvailable";
+NSString *const ON_EXPIRING_EVENT=@"onExpiring";
+NSString *const ON_OPENED_EVENT=@"onOpened";
+NSString *const ON_CLOSED_EVENT=@"onClosed";
+NSString *const ON_AD_AVAILABLE_NATIVE_BANNER_EVENT =@"onNativeBannerAdAvailable";
+NSString *const ON_ERROR_NATIVE_BANNER_EVENT = @"onNativeBannerAdError";
+NSString *const ON_NO_AD_AVAILABLE_NATIVE_BANNER_EVENT = @"onNoNativeBannerAdAvailable";
+NSString *const ON_NO_NETWORK_NATIVE_BANNER_EVENT = @"onNativeBannerAdNoNetwork";
+NSString *const ON_AD_AVAILABLE_NATIVE_VIDEO_EVENT = @"onNativeVideoAdAvailable";
+NSString *const ON_ERROR_NATIVE_VIDEO_EVENT =  @"onNativeVideoAdError";
+NSString *const ON_NO_AD_AVAILABLE_NATIVE_VIDEO_EVENT = @"onNoNativeVideoAdAvailable";
+NSString *const ON_NO_NETWORK_NATIVE_VIDEO_EVENT = @"onNativeVideoAdNoNetwork";
+
+NSString *const ROTATION_MODE_KEY = @"rotation_mode";
+NSString *const BACK_DISABLED_KEY = @"back_disabled";
+NSString *const SHOW_EXIT_DIALOG_KEY = @"show_exit_dialog";
+NSString *const ERROR_KEY = @"error_message";
+NSString *const AD_ID_KEY = @"ad_id";
+NSString *const ZONE_ID_KEY = @"zone_id";
+
 @implementation TSTapsell
 
 RCT_EXPORT_MODULE();
@@ -11,7 +33,47 @@ RCT_EXPORT_MODULE();
              ON_ERROR_EVENT,
              ON_EXPIRING_EVENT,
              ON_OPENED_EVENT,
-             ON_CLOSED_EVENT];
+             ON_CLOSED_EVENT,
+             ON_AD_AVAILABLE_NATIVE_BANNER_EVENT,
+             ON_ERROR_NATIVE_BANNER_EVENT,
+             ON_NO_AD_AVAILABLE_NATIVE_BANNER_EVENT,
+             ON_NO_NETWORK_NATIVE_BANNER_EVENT,
+             ON_AD_AVAILABLE_NATIVE_VIDEO_EVENT,
+             ON_ERROR_NATIVE_VIDEO_EVENT,
+             ON_NO_AD_AVAILABLE_NATIVE_VIDEO_EVENT,
+             ON_NO_NETWORK_NATIVE_VIDEO_EVENT];
+}
+
+- (NSDictionary *)constantsToExport
+{
+    return @{
+             @"ON_AD_AVAILABLE_EVENT" : ON_AD_AVAILABLE_EVENT,
+             @"ON_NO_AD_AVAILABLE_EVENT" : ON_NO_AD_AVAILABLE_EVENT,
+             @"ON_ERROR_EVENT" : ON_ERROR_EVENT,
+             @"ON_EXPIRING_EVENT" : ON_EXPIRING_EVENT,
+             @"ON_OPENED_EVENT" : ON_OPENED_EVENT,
+             @"ON_CLOSED_EVENT" : ON_CLOSED_EVENT,
+             @"ON_AD_AVAILABLE_NATIVE_BANNER_EVENT" : ON_AD_AVAILABLE_NATIVE_BANNER_EVENT,
+             @"ON_ERROR_NATIVE_BANNER_EVENT" : ON_ERROR_NATIVE_BANNER_EVENT,
+             @"ON_NO_AD_AVAILABLE_NATIVE_BANNER_EVENT" : ON_NO_AD_AVAILABLE_NATIVE_BANNER_EVENT,
+             @"ON_NO_NETWORK_NATIVE_BANNER_EVENT" : ON_NO_NETWORK_NATIVE_BANNER_EVENT,
+             @"ON_AD_AVAILABLE_NATIVE_VIDEO_EVENT" : ON_AD_AVAILABLE_NATIVE_VIDEO_EVENT,
+             @"ON_ERROR_NATIVE_VIDEO_EVENT" : ON_ERROR_NATIVE_VIDEO_EVENT,
+             @"ON_NO_AD_AVAILABLE_NATIVE_VIDEO_EVENT" : ON_NO_AD_AVAILABLE_NATIVE_VIDEO_EVENT,
+             @"ON_NO_NETWORK_NATIVE_VIDEO_EVENT" : ON_NO_NETWORK_NATIVE_VIDEO_EVENT,
+             @"BANNER_320x50": [NSNumber numberWithInteger:BANNER_320x50],
+             @"BANNER_320x100": [NSNumber numberWithInteger:BANNER_320x100],
+             @"BANNER_250x250": [NSNumber numberWithInteger:BANNER_250x250],
+             @"BANNER_300x250": [NSNumber numberWithInteger:BANNER_300x250]
+         };
+}
+
++ (NSMutableDictionary *)nativeVideos {
+    static NSMutableDictionary *nativeVideos = nil;
+    if (nativeVideos == nil) {
+        nativeVideos = [[NSMutableDictionary alloc] init];
+    }
+    return nativeVideos;
 }
 
 RCT_EXPORT_METHOD(initialize:(NSString *)appKey) {
@@ -58,6 +120,44 @@ RCT_EXPORT_METHOD(showAd:(NSDictionary*) options) {
       }];
 }
 
+RCT_EXPORT_METHOD(requestNativeBannerAd:(NSString*)zoneId) {
+    [Tapsell requestNativeBannerAdForZone:zoneId onAdAvailable:^(TSNativeBannerAdWrapper *nativeBannerAd) {
+        [self sendEventWithName:ON_AD_AVAILABLE_NATIVE_BANNER_EVENT body:@{@"ad_id": nativeBannerAd.adId, @"zone_id": zoneId, @"title": nativeBannerAd.title, @"description": nativeBannerAd.htmlDescription, @"call_to_action_text": nativeBannerAd.callToActionText, @"icon_url": nativeBannerAd.logoUrl, @"portriat_static_image_url": nativeBannerAd.portriatImageUrl, @"landscape_static_image_url": nativeBannerAd.landscapeImageUrl}];
+    } onNoAdAvailable:^{
+        [self sendEventWithName:ON_NO_AD_AVAILABLE_NATIVE_BANNER_EVENT body:@{ZONE_ID_KEY: zoneId}];
+    } onError:^(NSString * _Nullable error) {
+        [self sendEventWithName:ON_ERROR_NATIVE_BANNER_EVENT body:@{ZONE_ID_KEY: zoneId, ERROR_KEY: error}];
+    }];
+}
+
+RCT_EXPORT_METHOD(onNativeBannerAdShown:(NSString*)adId) {
+    [Tapsell nativeBannerAdShowWithAdId:adId];
+}
+    
+RCT_EXPORT_METHOD(onNativeBannerAdClicked:(NSString*)adId) {
+    [Tapsell nativeBannerAdClickedWithAdId:adId];
+}
+
+RCT_EXPORT_METHOD(requestNativeVideoAd:(NSString*)zoneId) {
+    [Tapsell requestNativeVideoAdForZone:zoneId onAdAvailable:^(TSNativeVideoAdWrapper *nativeVideoAd) {
+        [[TSTapsell nativeVideos] setObject:nativeVideoAd.videoUrl forKey:nativeVideoAd.adId];
+        [self sendEventWithName:ON_AD_AVAILABLE_NATIVE_VIDEO_EVENT body:@{@"ad_id": nativeVideoAd.adId, @"zone_id": zoneId, @"title": nativeVideoAd.title, @"description": nativeVideoAd.htmlDescription, @"call_to_action_text": nativeVideoAd.callToActionText, @"icon_url": nativeVideoAd.logoUrl, @"video_url": nativeVideoAd.videoUrl}];
+    } onNoAdAvailable:^{
+        [self sendEventWithName:ON_NO_AD_AVAILABLE_NATIVE_VIDEO_EVENT body:@{ZONE_ID_KEY: zoneId}];
+    } onError:^(NSString * _Nullable error) {
+        [self sendEventWithName:ON_ERROR_NATIVE_VIDEO_EVENT body:@{ZONE_ID_KEY: zoneId, ERROR_KEY: error}];
+    }];
+}
+
+RCT_EXPORT_METHOD(onNativeVideoAdShown:(NSString*)adId) {
+    [Tapsell nativeVideoAdShowWithAdId:adId];
+}
+
+RCT_EXPORT_METHOD(onNativeVideoAdClicked:(NSString*)adId) {
+    [Tapsell nativeVideoAdClickedWithAdId:adId];
+}
+
+
 RCT_EXPORT_METHOD(setRewardListener:(RCTResponseSenderBlock)callback) {
     [Tapsell setAdShowFinishedCallback:^(TapsellAd *ad, BOOL completed) {
         callback(@[ad.getZoneId,
@@ -65,5 +165,9 @@ RCT_EXPORT_METHOD(setRewardListener:(RCTResponseSenderBlock)callback) {
                    [NSNumber numberWithBool:completed],
                    [NSNumber numberWithBool:ad.isRewardedAd]]);
     }];
+}
+
+RCT_EXPORT_METHOD(setDebugMode:(NSInteger)mode) {
+    [Tapsell setDebugMode:mode];
 }
 @end

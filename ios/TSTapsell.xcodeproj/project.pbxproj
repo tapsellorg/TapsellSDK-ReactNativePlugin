@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		B264A6721F88F9BA00ADC652 /* TSTapsell.m in Sources */ = {isa = PBXBuildFile; fileRef = B264A6711F88F9BA00ADC652 /* TSTapsell.m */; };
 		B264A6731F88F9BA00ADC652 /* TSTapsell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B264A6701F88F9BA00ADC652 /* TSTapsell.h */; };
-		B264A67B1F88FB5900ADC652 /* TapsellSDKv3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B264A67A1F88FB5900ADC652 /* TapsellSDKv3.a */; };
+		B29D76971FF4F29C0007819D /* RNTBannerAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B29D76961FF4F29C0007819D /* RNTBannerAdManager.m */; };
+		B2F5773A1FF13C6000BED2BE /* RNTAdVideoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F577381FF13C5F00BED2BE /* RNTAdVideoManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +31,10 @@
 		B264A6701F88F9BA00ADC652 /* TSTapsell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TSTapsell.h; sourceTree = "<group>"; };
 		B264A6711F88F9BA00ADC652 /* TSTapsell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TSTapsell.m; sourceTree = "<group>"; };
 		B264A67A1F88FB5900ADC652 /* TapsellSDKv3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = TapsellSDKv3.a; sourceTree = "<group>"; };
+		B29D76951FF4F29C0007819D /* RNTBannerAdManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNTBannerAdManager.h; sourceTree = "<group>"; };
+		B29D76961FF4F29C0007819D /* RNTBannerAdManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNTBannerAdManager.m; sourceTree = "<group>"; };
+		B2F577381FF13C5F00BED2BE /* RNTAdVideoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNTAdVideoManager.m; sourceTree = "<group>"; };
+		B2F577391FF13C6000BED2BE /* RNTAdVideoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNTAdVideoManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +42,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B264A67B1F88FB5900ADC652 /* TapsellSDKv3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +68,10 @@
 		B264A66F1F88F9BA00ADC652 /* TSTapsell */ = {
 			isa = PBXGroup;
 			children = (
+				B29D76951FF4F29C0007819D /* RNTBannerAdManager.h */,
+				B29D76961FF4F29C0007819D /* RNTBannerAdManager.m */,
+				B2F577391FF13C6000BED2BE /* RNTAdVideoManager.h */,
+				B2F577381FF13C5F00BED2BE /* RNTAdVideoManager.m */,
 				B264A6701F88F9BA00ADC652 /* TSTapsell.h */,
 				B264A6711F88F9BA00ADC652 /* TSTapsell.m */,
 			);
@@ -137,6 +145,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B264A6721F88F9BA00ADC652 /* TSTapsell.m in Sources */,
+				B2F5773A1FF13C6000BED2BE /* RNTAdVideoManager.m in Sources */,
+				B29D76971FF4F29C0007819D /* RNTBannerAdManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +247,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = B86UJLD9TA;
+				FRAMEWORK_SEARCH_PATHS = "../../../ios/**";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -251,6 +262,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = B86UJLD9TA;
+				FRAMEWORK_SEARCH_PATHS = "../../../ios/**";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -280,6 +292,7 @@
 				B264A6781F88F9BA00ADC652 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

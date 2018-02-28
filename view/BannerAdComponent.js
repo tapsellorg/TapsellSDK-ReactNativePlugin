@@ -5,12 +5,17 @@ import {
 	View,
 	UIManager,
 	findNodeHandle,
-	Dimensions
+	Dimensions,
+	Platform
 } from "react-native";
 import PropTypes from "prop-types";
 let Constants = require("./../src/constants.js");
 let width = 320,
 	height = 50;
+let TapsellIOS = require("react-native").NativeModules.RNTBannerAdManager;
+
+let BannerAdKey = "BannerAd";
+if (Platform.OS == "ios") BannerAdKey = "RNTBannerAd";
 
 class BannerAdComponent extends Component {
 	constructor(props) {
@@ -47,11 +52,15 @@ class BannerAdComponent extends Component {
 			typeof this.props.zoneId != "undefined" &&
 			typeof this.props.bannerType != "undefined"
 		) {
-			UIManager.dispatchViewManagerCommand(
-				findNodeHandle(this),
-				UIManager.BannerAd.Commands.loadBanner,
-				[this.props.zoneId, this.props.bannerType]
-			);
+			if (Platform.OS == "android") {
+				UIManager.dispatchViewManagerCommand(
+					findNodeHandle(this),
+					UIManager.BannerAd.Commands.loadBanner,
+					[this.props.zoneId, this.props.bannerType]
+				);
+			} else if (Platform.OS == "ios") {
+				TapsellIOS.loadAd(this.props.zoneId, this.props.bannerType);
+			}
 		}
 	}
 
@@ -60,6 +69,8 @@ class BannerAdComponent extends Component {
 		let bannerType = 0;
 		if (typeof nextProps.zoneId != "undefined") {
 			zoneId = nextProps.zoneId;
+		} else {
+			console.log("Tapsell: No zoneId provided for standard banner ad");
 		}
 		if (typeof nextProps.bannerType != "undefined") {
 			bannerType = nextProps.bannerType;
@@ -81,16 +92,24 @@ class BannerAdComponent extends Component {
 					height = 250;
 					break;
 			}
+		} else {
+			console.log(
+				"Tapsell: No bannerType provided for standard banner ad"
+			);
 		}
 		if (
 			typeof nextProps.zoneId != "undefined" &&
 			typeof nextProps.bannerType != "undefined"
 		) {
-			UIManager.dispatchViewManagerCommand(
-				findNodeHandle(this),
-				UIManager.BannerAd.Commands.loadBanner,
-				[zoneId, bannerType]
-			);
+			if (Platform.OS == "android") {
+				UIManager.dispatchViewManagerCommand(
+					findNodeHandle(this),
+					UIManager.BannerAd.Commands.loadBanner,
+					[zoneId, bannerType]
+				);
+			} else if (Platform.OS == "ios") {
+				TapsellIOS.loadAd(zoneId, bannerType);
+			}
 		}
 	}
 
@@ -99,8 +118,7 @@ class BannerAdComponent extends Component {
 			<BannerAd
 				style={{
 					width: width,
-					backgroundColor: "black",
-                    height: height,
+					height: height
 				}}
 				{...this.props}
 			/>
@@ -114,7 +132,7 @@ BannerAdComponent.propTypes = {
 	...View.propTypes
 };
 
-const BannerAd = requireNativeComponent(`BannerAd`, BannerAdComponent, {
+const BannerAd = requireNativeComponent(BannerAdKey, BannerAdComponent, {
 	nativeOnly: {}
 });
 
