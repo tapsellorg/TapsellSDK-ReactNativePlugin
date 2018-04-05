@@ -1,6 +1,6 @@
 {
   "name": "react-native-tapsell",
-  "version": "2.15.6",
+  "version": "2.16.0",
   "description": "Tapsell sdk package for react native.",
   "files": [
     "android",

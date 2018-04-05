@@ -4,6 +4,7 @@ import { Platform } from "react-native";
 
 if (Platform.OS === "ios") {
 	module.exports = {
+		ON_AD_SHOW_FINISHED_EVENT: TapsellIOS.ON_AD_SHOW_FINISHED_EVENT,
 		ON_AD_AVAILABLE_EVENT: TapsellIOS.ON_AD_AVAILABLE_EVENT,
 		ON_ERROR_EVENT: TapsellIOS.ON_ERROR_EVENT,
 		ON_NO_AD_AVAILABLE_EVENT: TapsellIOS.ON_NO_AD_AVAILABLE_EVENT,
@@ -38,6 +39,7 @@ if (Platform.OS === "ios") {
 	};
 } else if (Platform.OS === "android") {
 	module.exports = {
+		ON_AD_SHOW_FINISHED_EVENT: Tapsell.ON_AD_SHOW_FINISHED_EVENT,
 		ON_AD_AVAILABLE_EVENT: Tapsell.ON_AD_AVAILABLE_EVENT,
 		ON_ERROR_EVENT: Tapsell.ON_ERROR_EVENT,
 		ON_NO_AD_AVAILABLE_EVENT: Tapsell.ON_NO_AD_AVAILABLE_EVENT,

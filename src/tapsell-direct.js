@@ -4,6 +4,7 @@ import { DeviceEventEmitter, Platform, NativeEventEmitter } from "react-native";
 import Constants from "./constants.js";
 
 let callbacks = {};
+let ON_AD_SHOW_FINISHED_CB;
 callbacks[Constants.ON_AD_AVAILABLE_EVENT] = {};
 callbacks[Constants.ON_ERROR_EVENT] = {};
 callbacks[Constants.ON_NO_AD_AVAILABLE_EVENT] = {};
@@ -17,6 +18,10 @@ const appEventEmitter =
 		? new NativeEventEmitter(TapsellIOS)
 		: DeviceEventEmitter;
 // Direct Ad Events
+appEventEmitter.addListener(Constants.ON_AD_SHOW_FINISHED_EVENT, event => {
+	if (ON_AD_SHOW_FINISHED_CB)
+		ON_AD_SHOW_FINISHED_CB(event.zone_id, event.ad_id, event.completed, event.rewarded);
+});
 appEventEmitter.addListener(Constants.ON_AD_AVAILABLE_EVENT, event => {
 	if (callbacks[Constants.ON_AD_AVAILABLE_EVENT][event.zone_id])
 		callbacks[Constants.ON_AD_AVAILABLE_EVENT][event.zone_id](
@@ -110,10 +115,10 @@ module.exports = {
 		}
 	},
 	setRewardListener: function(onAdShowFinished) {
-		if (Platform.OS === "ios") {
-			TapsellIOS.setRewardListener(onAdShowFinished);
-		} else if (Platform.OS === "android") {
-			Tapsell.setRewardListener(onAdShowFinished);
-		}
+        if(onAdShowFinished) {
+            ON_AD_SHOW_FINISHED_CB = onAdShowFinished;
+            if (Platform.OS === 'ios')
+                TapsellIOS.setRewardListener()
+        }
 	}
 };
