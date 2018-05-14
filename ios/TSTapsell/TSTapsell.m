@@ -1,5 +1,6 @@
 #import "TSTapsell.h"
 
+NSString *const ON_AD_SHOW_FINISHED_EVENT=@"onAdShowFinished";
 NSString *const ON_AD_AVAILABLE_EVENT=@"onAdAvailable";
 NSString *const ON_ERROR_EVENT=@"onError";
 NSString *const ON_NO_AD_AVAILABLE_EVENT=@"onNoAdAvailable";
@@ -21,6 +22,8 @@ NSString *const SHOW_EXIT_DIALOG_KEY = @"show_exit_dialog";
 NSString *const ERROR_KEY = @"error_message";
 NSString *const AD_ID_KEY = @"ad_id";
 NSString *const ZONE_ID_KEY = @"zone_id";
+NSString *const COMPLETED_KEY = @"completed";
+NSString *const REWARDED_KEY = @"rewarded";
 
 @implementation TSTapsell
 
@@ -28,7 +31,8 @@ RCT_EXPORT_MODULE();
 
 - (NSArray<NSString *> *)supportedEvents
 {
-    return @[ON_AD_AVAILABLE_EVENT,
+    return @[ON_AD_SHOW_FINISHED_EVENT,
+             ON_AD_AVAILABLE_EVENT,
              ON_NO_AD_AVAILABLE_EVENT,
              ON_ERROR_EVENT,
              ON_EXPIRING_EVENT,
@@ -47,6 +51,7 @@ RCT_EXPORT_MODULE();
 - (NSDictionary *)constantsToExport
 {
     return @{
+             @"ON_AD_SHOW_FINISHED_EVENT" : ON_AD_SHOW_FINISHED_EVENT,
              @"ON_AD_AVAILABLE_EVENT" : ON_AD_AVAILABLE_EVENT,
              @"ON_NO_AD_AVAILABLE_EVENT" : ON_NO_AD_AVAILABLE_EVENT,
              @"ON_ERROR_EVENT" : ON_ERROR_EVENT,
@@ -158,12 +163,13 @@ RCT_EXPORT_METHOD(onNativeVideoAdClicked:(NSString*)adId) {
 }
 
 
-RCT_EXPORT_METHOD(setRewardListener:(RCTResponseSenderBlock)callback) {
+RCT_EXPORT_METHOD(setRewardListener) {
     [Tapsell setAdShowFinishedCallback:^(TapsellAd *ad, BOOL completed) {
-        callback(@[ad.getZoneId,
-                   ad.getId,
-                   [NSNumber numberWithBool:completed],
-                   [NSNumber numberWithBool:ad.isRewardedAd]]);
+        [self sendEventWithName:ON_AD_SHOW_FINISHED_EVENT body:@{
+                                                                ZONE_ID_KEY: ad.getZoneId, 
+                                                                AD_ID_KEY: ad.getId, 
+                                                                COMPLETED_KEY: [NSNumber numberWithBool:completed],
+                                                                REWARDED_KEY: [NSNumber numberWithBool:ad.isRewardedAd]}];
     }];
 }
 

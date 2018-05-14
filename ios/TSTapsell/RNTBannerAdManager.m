@@ -13,7 +13,13 @@ RCT_EXPORT_METHOD(loadAd:(NSString*)zoneId andBannerType:(nonnull NSNumber*)bann
     if (zoneId != nil) {
         NSLog(@"zoneid: %@, bannerType: %@", zoneId, bannerType);
         dispatch_async(dispatch_get_main_queue(), ^{
-            [_bannerView loadAdWithZoneId:zoneId andBannerType:bannerType];
+            [_bannerView loadAdWithZoneId:zoneId andBannerType:bannerType onRequestFilled:^{
+                
+            } onHideBannerClicked:^{
+                
+            } onNoAdAvailable:^{
+                
+            }];
         });
     }
 }

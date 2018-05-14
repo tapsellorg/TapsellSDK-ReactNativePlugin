@@ -115,7 +115,10 @@ module.exports = {
 		}
 	},
 	setRewardListener: function(onAdShowFinished) {
-		if (onAdShowFinished)
-			ON_AD_SHOW_FINISHED_CB = onAdShowFinished;
+        if(onAdShowFinished) {
+            ON_AD_SHOW_FINISHED_CB = onAdShowFinished;
+            if (Platform.OS === 'ios')
+                TapsellIOS.setRewardListener()
+        }
 	}
 };
