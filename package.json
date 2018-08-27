@@ -1,7 +1,7 @@
 {
   "name": "react-native-tapsell",
   "version": "3.0.0",
-  "description": "Tapsell sdk package for react native.",
+  "description": "Tapsell React native plugin.",
   "files": [
     "android",
     "ios",
@@ -14,9 +14,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Tapsell",
+  "license": "Apache 2.0",
   "dependencies": {
     "prop-types": "^15.5.10"
-  }
+  },
+  "keywords": [
+    "tapsell",
+    "ad"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tapsellorg/TapsellSDK-ReactNativePlugin.git"
+  }, 
+  "bugs": {
+    "url": "https://github.com/tapsellorg/TapsellSDK-ReactNativePlugin/issues"
+  },
+  "homepage": "https://github.com/tapsellorg/TapsellSDK-ReactNativePlugin#readme"
 }
