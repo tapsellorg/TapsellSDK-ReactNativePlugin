@@ -80,6 +80,9 @@ appEventEmitter.addListener(
 	}
 );
 
+/**
+ * @deprecated
+ */
 export var requestNativeBannerAd = (
 	zoneId,
 	onAdAvailable,
@@ -101,5 +104,41 @@ export var requestNativeBannerAd = (
 		TapsellIOS.requestNativeBannerAd(zoneId);
 	} else {
 		Tapsell.requestNativeBannerAd(zoneId);
+	}
+};
+
+export var requestNativeBannerAd = (
+	zoneId,
+	onAdAvailable,
+	onError
+) => {
+	callbacks[Constants.ON_AD_AVAILABLE_NATIVE_BANNER_EVENT][zoneId] = onAdAvailable;
+	callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT][zoneId] = onError;
+	if (Platform.OS == "android") {
+		Tapsell.requestNativeBannerAd(zoneId);
+	}
+};
+
+export const cacheSize = {
+	MEDIUM : 'MEDIUM',
+    SMALL : 'SMALL',
+    NONE : 'NONE'
+}
+
+export var CacheNativeBannerAd = (zoneId, cacheSize) => {
+	if (Platform.OS == "android") {
+		Tapsell.CacheNativeBannerAd(zoneId, cacheSize);
+	}
+};
+
+export var getAllNativeAds = (
+	zoneId,
+	onResponse,
+	onError
+) => {
+	callbacks[Constants.ON_AD_AVAILABLE_NATIVE_BANNER_EVENT][zoneId] = onResponse;
+	callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT][zoneId] = onError;
+	if (Platform.OS == "android") {
+		Tapsell.getAllNativeAds(zoneId);
 	}
 };
