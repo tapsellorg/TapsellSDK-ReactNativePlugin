@@ -125,12 +125,13 @@ export const cacheSize = {
     NONE : 'NONE'
 }
 
-export var cacheNativeBannerAd = (zoneId, cacheSize) => {
+export var createCache = (zoneId, cacheSize) => {
 	if (Platform.OS == "android") {
-		Tapsell.cacheNativeBannerAd(zoneId, cacheSize);
+		Tapsell.createNativeAdCache(zoneId, cacheSize);
 	}
 };
 
+//TODO fix
 // export var getAllNativeAds = (
 // 	zoneId,
 // 	onResponse,
@@ -139,6 +140,6 @@ export var cacheNativeBannerAd = (zoneId, cacheSize) => {
 // 	callbacks[Constants.ON_AD_AVAILABLE_NATIVE_BANNER_EVENT][zoneId] = onResponse;
 // 	callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT][zoneId] = onError;
 // 	if (Platform.OS == "android") {
-// 		Tapsell.getAllNativeAds(zoneId);
+// 		Tapsell.getAllBannerAds(zoneId);
 // 	}
 // };
