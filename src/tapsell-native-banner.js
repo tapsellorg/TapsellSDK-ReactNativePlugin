@@ -33,52 +33,20 @@ const appEventEmitter =
 appEventEmitter.addListener(
 	Constants.ON_AD_AVAILABLE_NATIVE_BANNER_EVENT,
 	event => {
-		if (
-			callbacks[Constants.ON_AD_AVAILABLE_NATIVE_BANNER_EVENT][
-				event.zone_id
-			]
-		) {
-			callbacks[Constants.ON_AD_AVAILABLE_NATIVE_BANNER_EVENT][
-				event.zone_id
-			](event, onNativeBannerAdShown, onNativeBannerAdClicked);
-		}
+		callbacks[Constants.ON_AD_AVAILABLE_NATIVE_BANNER_EVENT][
+			event.zone_id
+		](event, onNativeBannerAdShown, onNativeBannerAdClicked);
 	}
 );
-appEventEmitter.addListener(Constants.ON_ERROR_NATIVE_BANNER_EVENT, event => {
-	if (callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT][event.zone_id]) {
-		callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT][event.zone_id](
-			event.error_message
-		);
+appEventEmitter.addListener(
+	Constants.ON_ERROR_NATIVE_BANNER_EVENT,
+	event => {
+		if (callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT][event.zone_id]) {
+			callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT][event.zone_id](
+				event.error_message
+				);
 	}
 });
-appEventEmitter.addListener(
-	Constants.ON_NO_AD_AVAILABLE_NATIVE_BANNER_EVENT,
-	event => {
-		if (
-			callbacks[Constants.ON_NO_AD_AVAILABLE_NATIVE_BANNER_EVENT][
-				event.zone_id
-			]
-		) {
-			callbacks[Constants.ON_NO_AD_AVAILABLE_NATIVE_BANNER_EVENT][
-				event.zone_id
-			]();
-		}
-	}
-);
-appEventEmitter.addListener(
-	Constants.ON_NO_NETWORK_NATIVE_BANNER_EVENT,
-	event => {
-		if (
-			callbacks[Constants.ON_NO_NETWORK_NATIVE_BANNER_EVENT][
-				event.zone_id
-			]
-		) {
-			callbacks[Constants.ON_NO_NETWORK_NATIVE_BANNER_EVENT][
-				event.zone_id
-			]();
-		}
-	}
-);
 
 /**
  * @deprecated
@@ -119,27 +87,8 @@ export var requestCachedNativeBannerAd = (
 	}
 };
 
-export const cacheSize = {
-	MEDIUM : 'MEDIUM',
-    SMALL : 'SMALL',
-    NONE : 'NONE'
-}
-
 export var createCache = (zoneId, cacheSize) => {
 	if (Platform.OS == "android") {
 		Tapsell.createNativeAdCache(zoneId, cacheSize);
 	}
 };
-
-//TODO fix
-// export var getAllNativeAds = (
-// 	zoneId,
-// 	onResponse,
-// 	onError
-// ) => {
-// 	callbacks[Constants.ON_AD_AVAILABLE_NATIVE_BANNER_EVENT][zoneId] = onResponse;
-// 	callbacks[Constants.ON_ERROR_NATIVE_BANNER_EVENT][zoneId] = onError;
-// 	if (Platform.OS == "android") {
-// 		Tapsell.getAllBannerAds(zoneId);
-// 	}
-// };

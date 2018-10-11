@@ -15,6 +15,11 @@ module.exports = {
 	PERMISSION_HANDLER_DISABLED: Constants.PERMISSION_HANDLER_DISABLED,
 	PERMISSION_HANDLER_AUTO: Constants.PERMISSION_HANDLER_AUTO,
 	PERMISSION_HANDLER_AUTO_INSIST: Constants.PERMISSION_HANDLER_AUTO_INSIST,
+
+	CACHE_SIZE_MEDIUM : Constants.CACHE_SIZE_MEDIUM,
+	CACHE_SIZE_SMALL : Constants.CACHE_SIZE_SMALL,
+	CACHE_SIZE_NONE : Constants.CACHE_SIZE_NONE,
+
 	BANNER_320x50: Constants.BANNER_320x50,
 	BANNER_320x100: Constants.BANNER_320x100,
 	BANNER_250x250: Constants.BANNER_250x250,
@@ -35,6 +40,9 @@ module.exports = {
 	showAd: TapsellDirect.showAd,
 	requestAd: TapsellDirect.requestAd,
 	setRewardListener: TapsellDirect.setRewardListener,
+
+	createCache: TapsellNativeBanner.createCache,
+	requestCachedNativeBannerAd: TapsellNativeBanner.requestCachedNativeBannerAd,
 
 	requestNativeBannerAd: TapsellNativeBanner.requestNativeBannerAd,
 	requestNativeVideoAd: TapsellNativeVideo.requestNativeVideoAd,
