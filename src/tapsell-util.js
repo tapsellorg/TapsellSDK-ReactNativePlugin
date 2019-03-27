@@ -30,7 +30,7 @@ if (Platform.OS === "ios") {
 } else {
 	module.exports = {
 		initialize: function(appKey) {
-			Tapsell.initialize(appKey, "4.1.7.0");
+			Tapsell.initialize(appKey, "4.1.7-0");
 		},
 		setDebugMode: function(mode) {
 			Tapsell.setDebugMode(mode);
