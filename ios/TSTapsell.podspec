@@ -8,5 +8,6 @@ Pod::Spec.new do |s|
   s.author           = { 'Ahmadreza Saboor' => 'ahmadreza.saboor2012@gmail.com' }
 
   s.ios.deployment_target = '8.0'
-  s.source_files = 'TSTapsell/*’
+  s.source_files = 'TSTapsell/*'
+  s.source = { :git => 'https://github.com/tapsellorg/TapsellSDK-ReactNativePlugin.git' }
 end
