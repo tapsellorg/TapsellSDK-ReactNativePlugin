@@ -10,7 +10,6 @@
         <activity
             android:name="ir.tapsell.sdk.TapsellAdActivity"
             android:label="TapsellAdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustPan"
          >
         </activity>

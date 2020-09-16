@@ -87,6 +87,7 @@ module.exports = {
 		} else if (Platform.OS === "android") {
 			Tapsell.showAd(
 				adOptions.ad_id,
+				adOptions.zone_id,
 				adOptions.back_disabled,
 				adOptions.immersive_mode,
 				adOptions.rotation_mode,

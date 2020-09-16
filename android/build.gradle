@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    buildToolsVersion "29.0.2"
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 28
@@ -19,7 +19,8 @@ android {
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation files('libs/tapsell.jar')
+    implementation files('libs/tapsell.aar')
+	api 'com.google.android.gms:play-services-ads-identifier:17.0.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
