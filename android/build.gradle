@@ -1,3 +1,13 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.3.1'
+    }
+}
+
 apply plugin: 'com.android.library'
 
 android {
@@ -17,12 +27,14 @@ android {
     }
 }
 
+rootProject.allprojects {
+    repositories {
+        mavenCentral()
+        maven { url 'https://dl.bintray.com/tapsellorg/maven' }
+    }
+}
+
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation files('libs/tapsell.aar')
-	api 'com.google.android.gms:play-services-ads-identifier:17.0.0'
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
+    implementation 'ir.tapsell.sdk:tapsell-sdk-reactnative:4.6.2'
 }
